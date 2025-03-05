@@ -30,7 +30,7 @@ if [ "$error" == 1 ] ;
 $orange▐█   Killing remaining process$nocolour"
     killall wpa_supplicant dhclient &>/dev/null
     echo -e "$orange▐█   Restarting Network Manager$nocolour"
-    systemctl restart network-manager
+    systemctl restart NetworkManager.service
     echo -e "$orange▐█   Cleaning up$nocolour"
     rm -r /tmp/interfaces.txt /tmp/PBC.conf &>/dev/null
 elif [ "$error" == 2 ] ;
@@ -98,7 +98,7 @@ $green▐█$purpple   Selected interface is $green$interface$nocolour
         done
     fi
 echo -e "$white▐█$purpple   Shutting down network manager$nocolour (wifi connexion will be lost)"
-systemctl stop network-manager
+systemctl stop NetworkManager.service
 echo -e "$white▐█$purpple   Killing conflictual process$nocolour"
 killall wpa_supplicant dhclient 2>/dev/null
 echo -e "$white▐█$purpple   Soft block control$nocolour"
@@ -138,7 +138,7 @@ $white▐█$purpple   WPA Key:$yellow $wpakey$nocolour"
                 echo -e "$white▐█$purpple   Killing conflictual process$nocolour"
                 killall wpa_supplicant dhclient 2>/dev/null
                 echo -e "$white▐█$purpple   Restarting Newtork Manager$nocolour"
-                systemctl restart network-manager
+                systemctl restart NetworkManager.service
                 echo -e "$white▐█$purpple   Exporting profile for$yellow $essid$purpple to Network Manager$nocolour"
                 nmcli con add con-name "$essid" ifname "*" type wifi ssid "$essid"
                 nmcli con modify "$essid" wifi-sec.key-mgmt wpa-psk 
