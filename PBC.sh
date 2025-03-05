@@ -1,5 +1,5 @@
 #! /bin/bash
-version=0.4
+version=0.5
 
 # PBC.sh is a bash script that acts like an emulator of WPS button, usimg wpa_supplicant to perform a WPS PBC (Push button Configuration) connexion.
 # Copyright (C) 2017 kcdtv @ www.wifi-libre.com
