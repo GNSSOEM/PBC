@@ -110,7 +110,7 @@ ip link set "$interface" up
 echo -e "$white▐█$purpple   Creation of wpa_supplicant configuration file$nocolour" 
 echo "ctrl_interface=/var/run/wpa_supplicant
 ctrl_interface_group=root
-update_config=1" >> /tmp/PBC.conf
+update_config=1" > /tmp/PBC.conf
 echo -e "$white▐█$purpple   Launching wpa-supplicant$nocolour"
 wpa_supplicant -c /tmp/PBC.conf -i "$interface" -B 
 echo -e "$white   
