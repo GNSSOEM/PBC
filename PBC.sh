@@ -27,11 +27,11 @@ function ciao {
 if [ "$error" == 1 ] ; 
   then
     echo -e "
-$orange▐█   Killing remaining process$nocolour"  1>&2
+$orange▐█   Killing remaining process$nocolour"
     killall wpa_supplicant dhclient &>/dev/null
-    echo -e "$orange▐█   Restarting Network Manager$nocolour"  1>&2
+    echo -e "$orange▐█   Restarting Network Manager$nocolour"
     systemctl restart NetworkManager.service
-    echo -e "$orange▐█   Cleaning up$nocolour"  1>&2
+    echo -e "$orange▐█   Cleaning up$nocolour"
     rm -r /tmp/interfaces.txt /tmp/PBC.conf &>/dev/null
 elif [ "$error" == 2 ] ;
   then  
