@@ -64,7 +64,7 @@ echo -e "$white▐█$purpple   Privileges check...$nocolour"
 whoami | grep root || { echo -e "$red▐█   Error$nocolour - You need root privileges. Run the script again with$white sudo$nocolour or$white su$nocolour. 
 $red▐█   Exit.$nocolour" 1>&2; error=0;  exit 1; }
 echo -e "$white▐█$purpple   Interface(s) check...$nocolour" 
-iwconfig | tee /tmp/interfaces.txt
+iwconfig 2>/dev/null | tee /tmp/interfaces.txt
     if [ "$(wc -w < /tmp/interfaces.txt)" == 0 ]; 
       then
         echo -e "$red▐█   Error$nocolour - No wireless interface detected.
