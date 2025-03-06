@@ -27,11 +27,11 @@ function ciao {
 if [ "$error" == 1 ] ; 
   then
     echo -e "
-$orange▐█   Killing remaining process$nocolour"
+$orange▐█   Killing remaining process$nocolour"  1>&2
     killall wpa_supplicant dhclient &>/dev/null
-    echo -e "$orange▐█   Restarting Network Manager$nocolour"
+    echo -e "$orange▐█   Restarting Network Manager$nocolour"  1>&2
     systemctl restart NetworkManager.service
-    echo -e "$orange▐█   Cleaning up$nocolour"
+    echo -e "$orange▐█   Cleaning up$nocolour"  1>&2
     rm -r /tmp/interfaces.txt /tmp/PBC.conf &>/dev/null
 elif [ "$error" == 2 ] ;
   then  
@@ -62,7 +62,7 @@ Copyright (C) 2017 kcdtv @ www.wifi-libre.com (see the GPLv3 license provided)
 # Script
 echo -e "$white▐█$purpple   Privileges check...$nocolour"  
 whoami | grep root || { echo -e "$red▐█   Error$nocolour - You need root privileges. Run the script again with$white sudo$nocolour or$white su$nocolour. 
-$red▐█   Exit.$nocolour"; error=0;  exit 1; }  
+$red▐█   Exit.$nocolour" 1>&2; error=0;  exit 1; }
 echo -e "$white▐█$purpple   Interface(s) check...$nocolour" 
 iwconfig | tee /tmp/interfaces.txt
     if [ "$(wc -w < /tmp/interfaces.txt)" == 0 ]; 
@@ -89,7 +89,7 @@ interface=$(head -n 1 /tmp/interfaces.txt | awk '{ print $1 }')
                     echo -e "$red▐█   Error$nocolour - There is no interface associated with the entered number ($num).
 
 $orange▐█   Back to the interface selection...$nocolour
-"
+" 1>&2
                 else
                     echo -e "
 $green▐█$purpple   Selected interface is $green$interface$nocolour
@@ -154,13 +154,13 @@ $red▐█   Error$nocolour -$yellow Conexion failure.$red Exit.$nocolour
     
      Maybe Check your AP configuration and try again? 
     You can Scrwoll back in the shell to copy the WPA key
-    and use it in network manager"; exit 1; }
+    and use it in network manager" 1>&2; exit 1; }
                 echo -e "
     
 $green▐█        You are now connected!!
 
 $white Have a good time on the Internet! Cya! ;) 
-"
+" 1>&2
                 error=0                
                 exit 0 
             fi   
@@ -171,5 +171,5 @@ echo -e "
 $red▐█   Error$nocolour -$yellow Conexion failure.$red Exit.$nocolour
 
 $white   Sorry! It was impossible to connect to the PA...$nocolour
-"
+"  1>&2
 exit 1
